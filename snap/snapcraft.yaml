@@ -178,10 +178,8 @@ parts:
       rm -rf $CRAFT_PART_INSTALL/usr/share/pkgconfig
 
   wine-platform-runtime:
-    plugin: dump
-    source: snap/local/scripts
+    plugin: nil
     organize:
-      'zenity': bin/
       'wprfile': bin/
       'nlpfile': bin/
     build-packages:
