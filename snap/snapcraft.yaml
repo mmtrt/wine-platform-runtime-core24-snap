@@ -244,9 +244,29 @@ parts:
       wget -nvc "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -O $CRAFT_PART_INSTALL/winetricks
       chmod +x $CRAFT_PART_INSTALL/winetricks
 
-  fixup-vulkan-icd-paths:
+  cleanup:
+    after: [wine-runtime, fixup-winetricks]
     plugin: nil
-    after: [fixup-winetricks]
-    override-build: |
-      sed -i -E 's,(^.+"library_path": ")/.*/,\1,' $CRAFT_STAGE/usr/share/vulkan/icd.d/*.json
-      wget -nvc https://gist.github.com/mmtrt/8d1a2b9eb33429feb0197ec46b0acdf4/raw/a8082e47f3a9c2a4f5acd8cf81da6ec62c00d5fc/nvidia_icd.json -P $CRAFT_PART_INSTALL/usr/share/vulkan/icd.d
+    build-snaps:
+      - gaming-graphics-core24/kisak-fresh/stable
+      - gnome-46-2404/latest/stable
+    override-prime: |
+      set -eux
+      cd /snap/gaming-graphics-core24/current/etc
+      find . -type f,l -exec rm -f $CRAFT_PRIME/etc/{} \;
+      cd /snap/gaming-graphics-core24/current/usr/bin
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/bin/{} \;
+      cd /snap/gaming-graphics-core24/current/usr/lib
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/lib/{} \;
+      cd /snap/gaming-graphics-core24/current/usr/share
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
+      cd /snap/gnome-46-2404/current/etc
+      find . -type f,l -exec rm -f $CRAFT_PRIME/etc/{} \;
+      cd /snap/gnome-46-2404/current/usr/bin
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/bin/{} \;
+      cd /snap/gnome-46-2404/current/usr/lib
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/lib/{} \;
+      cd /snap/gnome-46-2404/current/usr/libexec
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/libexec/{} \;
+      cd /snap/gnome-46-2404/current/usr/share
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
