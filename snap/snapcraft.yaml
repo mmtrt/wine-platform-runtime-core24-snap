@@ -20,10 +20,8 @@ lint:
   # So just make it quiet and also make builds a surprising amount faster
   ignore:
     - library:
-        - lib/i386-linux-gnu/**
         - usr/lib/i386-linux-gnu/**
-        - lib32/**
-        - usr/lib32/**
+        - usr/lib/x86_64-linux-gnu/**
 
 slots:
   wine-runtime-c24:
