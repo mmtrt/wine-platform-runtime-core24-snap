@@ -248,10 +248,20 @@ parts:
     after: [wine-runtime, fixup-winetricks]
     plugin: nil
     build-snaps:
+      - mesa-2404/latest/stable
       - gaming-graphics-core24/kisak-fresh/stable
       - gnome-46-2404/latest/stable
     override-prime: |
       set -eux
+      cd /snap/mesa-2404/current/usr/lib
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/lib/{} \;
+      cd /snap/mesa-2404/current/drirc.d
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
+      cd /snap/mesa-2404/current/libdrm
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
+      cd /snap/mesa-2404/current/X11
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
+      cd /snap/mesa-2404/current/usr/share
       cd /snap/gaming-graphics-core24/current/etc
       find . -type f,l -exec rm -f $CRAFT_PRIME/etc/{} \;
       cd /snap/gaming-graphics-core24/current/usr/bin
