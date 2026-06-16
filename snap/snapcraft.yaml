@@ -70,6 +70,7 @@ parts:
       - libglu1-mesa
       - libgnutls30t64
       - libgssapi-krb5-2
+      - libmagic1t64
       - libodbc2
       - libosmesa6
       - libsane1
