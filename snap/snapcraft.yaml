@@ -47,6 +47,7 @@ parts:
   wine-runtime:
     plugin: nil
     stage-packages:
+      - dotnet-runtime-8.0
       - libasound2t64
       - libasound2-plugins
       - libavcodec60
