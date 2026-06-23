@@ -28,7 +28,10 @@ slots:
     interface: content
     source:
       read:
-      - /
+      - $SNAP/bin
+      - $SNAP/etc
+      - $SNAP/lib
+      - $SNAP/usr
 
 package-repositories:
   - type: apt
