@@ -256,7 +256,7 @@ parts:
       - gnome-46-2404/latest/stable
     override-prime: |
       set -eux
-      cd /snap/mesa-2404/current/usr/lib
+      cd /snap/mesa-2404/current/mesa-2404/usr/lib
       find . -type f,l -exec rm -f $CRAFT_PRIME/usr/lib/{} \;
       cd /snap/mesa-2404/current/drirc.d
       find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
@@ -264,7 +264,8 @@ parts:
       find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
       cd /snap/mesa-2404/current/X11
       find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
-      cd /snap/mesa-2404/current/usr/share
+      cd /snap/mesa-2404/current/mesa-2404/usr/share
+      find . -type f,l -exec rm -f $CRAFT_PRIME/usr/share/{} \;
       cd /snap/gaming-graphics-core24/current/etc
       find . -type f,l -exec rm -f $CRAFT_PRIME/etc/{} \;
       cd /snap/gaming-graphics-core24/current/usr/bin
